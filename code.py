@@ -6,6 +6,7 @@ window = Tk(className = ' Text Editor')
 text = scrolledtext.ScrolledText(window,width = 100, height=80)
 text.pack()
 
+# function for opening the file
 def openFile():
     text.delete('1.0',END)
     file = filedialog.askopenfile(parent = window,mode='rb',title='Select a text file',filetype=(('Text File','*.txt'),('All Files','*.*')))
@@ -14,24 +15,29 @@ def openFile():
     text.insert('1.0',contents)
     file.close()
 
+# function for saving the file
 def saveFile():
     file = filedialog.asksaveasfile(mode='w')
     contents = text.get('1.0',END)
     file.write(contents)
     file.close()
 
+# function for exit
 def exitFile():
     if messagebox.askyesno('Exit','Are you sure want to quit ?'):
         window.destroy()
 
+# function for displaying about
 def aboutFile():
     label = messagebox.showinfo('About','A text editor, created using Python')
 
+# function for creating a new file
 def newFile():
     if messagebox.askyesno('Save','Do you want to save?'):
         saveFile()
     text.delete('1.0',END)
 
+# function for finding whether a text is present in the contents or not
 def findtext():
     findstr = simpledialog.askstring('Find','Enter the text')
     contents = text.get('1.0',END)
